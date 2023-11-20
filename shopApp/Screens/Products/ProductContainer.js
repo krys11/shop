@@ -3,7 +3,6 @@ import {
   Text,
   Dimensions,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
@@ -74,7 +73,7 @@ const ProductContainer = () => {
   };
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={{ width: "100%", alignItems: "center", marginVertical: 10 }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Searchbar
@@ -118,7 +117,7 @@ const ProductContainer = () => {
           )}
         </ScrollView>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -133,6 +132,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     flexWrap: "wrap",
     backgroundColor: "gainsboro",
+    flex: 1,
   },
   noProduct: {
     flex: 1,

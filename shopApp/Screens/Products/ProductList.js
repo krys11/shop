@@ -6,18 +6,16 @@ const { width, height } = Dimensions.get("window");
 
 const ProductList = ({ item }) => {
   return (
-    <View>
-      <TouchableOpacity style={{ width: "50%" }}>
-        <View
-          style={{
-            width: width / 2,
-            backgroundColor: "gainsboro",
-          }}
-        >
-          <ProductCard item={item} />
-        </View>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity style={{ width: "50%" }}>
+      <View
+        style={{
+          width: width / 2,
+          backgroundColor: "gainsboro",
+        }}
+      >
+        <ProductCard item={item} />
+      </View>
+    </TouchableOpacity>
   );
 };
 

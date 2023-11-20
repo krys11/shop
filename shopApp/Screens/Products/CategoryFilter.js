@@ -1,12 +1,6 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import { Text, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { Badge, List } from "react-native-paper";
+import { Badge } from "react-native-paper";
 
 const CategoryFilter = ({ categoryFilter, active, setActive, categories }) => {
   return (
