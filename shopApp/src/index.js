@@ -10,12 +10,12 @@ import Main from "../Navigators/Main";
 
 export default function Start() {
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer>
+    <NavigationContainer>
+      <SafeAreaView style={styles.container}>
         <Header />
         <Main />
-      </NavigationContainer>
-    </SafeAreaView>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 

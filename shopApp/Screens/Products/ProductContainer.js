@@ -26,6 +26,7 @@ const ProductContainer = () => {
   const [productsCtg, setProductsCtg] = useState([]);
   const [focus, setFocus] = useState();
   const [active, setActive] = useState();
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     setProducts(data);
@@ -47,6 +48,7 @@ const ProductContainer = () => {
   }, []);
 
   const searchProduct = (text) => {
+    setSearchValue(text);
     setProductsFiltered(
       products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
     );
@@ -57,6 +59,7 @@ const ProductContainer = () => {
   };
 
   const onBlur = () => {
+    setSearchValue("");
     setFocus(false);
   };
 
@@ -80,6 +83,7 @@ const ProductContainer = () => {
             style={{ width: "85%", backgroundColor: "gainsboro" }}
             onFocus={openList}
             onChangeText={(text) => searchProduct(text)}
+            value={searchValue}
           />
           <TouchableOpacity
             onPress={onBlur}
