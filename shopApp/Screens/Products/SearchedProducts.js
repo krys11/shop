@@ -7,7 +7,7 @@ const { width } = Dimensions.get("window");
 const SearchedProducts = ({ productsFiltered }) => {
   return (
     <SafeAreaView>
-      <View style={{ width: width }}>
+      <View style={{ width: width, marginHorizontal: 20 }}>
         {productsFiltered.length > 0 ? (
           <FlatList
             data={productsFiltered}

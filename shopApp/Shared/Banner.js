@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "gainsboro",
-    marginTop: 10,
+    marginVertical: 0,
+    paddingVertical: 20,
   },
   swiper: {
     width: width,
