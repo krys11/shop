@@ -73,16 +73,19 @@ const ProductContainer = () => {
   };
 
   return (
-    <View>
-      <View style={{ width: "100%", alignItems: "center", marginVertical: 10 }}>
+    <View style={{ flex: 1 }}>
+      <View style={{ width: width, alignItems: "center", marginVertical: 10 }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Searchbar
             style={{ width: "85%", backgroundColor: "gainsboro" }}
             onFocus={openList}
             onChangeText={(text) => searchProduct(text)}
           />
-          <TouchableOpacity onPress={onBlur}>
-            <Icon source="close" size={25} />
+          <TouchableOpacity
+            onPress={onBlur}
+            style={{ position: "absolute", right: 15 }}
+          >
+            <Icon source="close" size={20} />
           </TouchableOpacity>
         </View>
       </View>
@@ -95,7 +98,7 @@ const ProductContainer = () => {
           <View>
             <Banner />
           </View>
-          <View style={{ marginHorizontal: 20 }}>
+          <View>
             <CategoryFilter
               categories={categories}
               categoryFilter={changeCtg}

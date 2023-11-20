@@ -8,13 +8,9 @@ const CategoryFilter = ({ categoryFilter, active, setActive, categories }) => {
       bounces={true}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
-      // style={{
-      //   justifyContent: "start",
-      //   alignItems: "center",
-      //   marginVertical: 10,
-      //   height: 50,
-      //   width: "100%",
-      // }}
+      style={{
+        marginVertical: 10,
+      }}
     >
       <TouchableOpacity
         key={1}
