@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import React, { Fragment, useState } from "react";
+import React from "react";
 import { List, Avatar, Button } from "react-native-paper";
 
 import { connect } from "react-redux";
@@ -109,10 +109,3 @@ const styles = StyleSheet.create({
 });
 
 export default connect(mapStateToProps, null)(Cart);
-
-{
-  /* <Text>Cart</Text>
-      {props.cartItems.map((it) => (
-        <Text key={Math.random()}> {it.product.item.name}</Text>
-      ))} */
-}
