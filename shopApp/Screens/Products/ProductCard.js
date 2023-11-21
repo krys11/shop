@@ -1,13 +1,14 @@
 import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
 import React from "react";
+import { Button } from "react-native-paper";
 
 import { connect } from "react-redux";
 import * as actions from "../../Redux/Actions/cartActions";
 
 const { width } = Dimensions.get("window");
 
-const ProductCard = ({ item }) => {
-  const { name, price, image, countInStock } = item;
+const ProductCard = (props) => {
+  const { name, price, image, countInStock } = props.item;
   return (
     <View style={styles.container}>
       <Image
@@ -26,13 +27,27 @@ const ProductCard = ({ item }) => {
       <Text style={styles.price}>${price}</Text>
       {countInStock > 0 ? (
         <View style={{ marginBottom: 60 }}>
-          <Text style={{ color: "green" }}>Add</Text>
+          <Button
+            icon="cart"
+            mode="contained"
+            buttonColor="green"
+            onPress={() => props.addItemToCart(props)}
+          >
+            ADD
+          </Button>
         </View>
       ) : (
         <Text style={{ marginTop: 20 }}>Currently Unavailable</Text>
       )}
     </View>
   );
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product) =>
+      dispatch(actions.addToCard({ quantity: 1, product })),
+  };
 };
 
 const styles = StyleSheet.create({
@@ -72,12 +87,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addItemToCart: (product) =>
-      dispatch(actions.addToCard({ quantity: 1, product })),
-  };
-};
 
 export default connect(null, mapDispatchToProps)(ProductCard);

@@ -5,6 +5,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 //Stack
 import { HomeNavigator } from "./HomeNavigator";
+import Cart from "../Screens/Cart/Cart";
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ const Main = () => {
 
       <Tab.Screen
         name="Cart"
-        component={HomeNavigator}
+        component={Cart}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome5Icon name="shopping-cart" color={color} size={30} />
