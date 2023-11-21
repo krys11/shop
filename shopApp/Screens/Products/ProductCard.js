@@ -1,6 +1,9 @@
 import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
 import React from "react";
 
+import { connect } from "react-redux";
+import * as actions from "../../Redux/Actions/cartActions";
+
 const { width } = Dimensions.get("window");
 
 const ProductCard = ({ item }) => {
@@ -70,4 +73,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductCard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product) =>
+      dispatch(actions.addToCard({ quantity: 1, product })),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductCard);

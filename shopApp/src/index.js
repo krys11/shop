@@ -8,14 +8,20 @@ import { NavigationContainer } from "@react-navigation/native";
 //Navigation
 import Main from "../Navigators/Main";
 
+//Redux
+import { Provider } from "react-redux";
+import { store } from "../Redux/store";
+
 export default function Start() {
   return (
-    <NavigationContainer>
-      <SafeAreaView style={styles.container}>
-        <Header />
-        <Main />
-      </SafeAreaView>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <SafeAreaView style={styles.container}>
+          <Header />
+          <Main />
+        </SafeAreaView>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
