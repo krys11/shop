@@ -17,14 +17,13 @@ const Checkout = (props) => {
   const navigation = useNavigation();
 
   const [orderItems, setOrderItems] = useState();
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState();
   const [address2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [zip, setZip] = useState("");
-  const [country, setCountry] = useState([]);
-  const [phone, setPhone] = useState("");
-  const [user, setUser] = useState("");
-  const [order, setOrder] = useState();
+  const [city, setCity] = useState();
+  const [zip, setZip] = useState();
+  const [country, setCountry] = useState();
+  const [phone, setPhone] = useState();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     setOrderItems(props.cartItems);
@@ -40,7 +39,6 @@ const Checkout = (props) => {
       city,
       country,
       dateOrdered: Date.now(),
-      orderItems,
       phone,
       shippingAddress1: address,
       shippingAddress2: address2,
@@ -48,9 +46,7 @@ const Checkout = (props) => {
       user,
       zip,
     };
-    setOrder(data);
-
-    navigation.navigate("Payment", { order: order });
+    return navigation.navigate("Payment", { data });
   };
 
   return (
@@ -92,17 +88,6 @@ const Checkout = (props) => {
           keyboardType={"numeric"}
           onChangeText={(text) => setZip(text)}
         />
-        {/* <Picker
-          mode="dropdown"
-          selectedValue={country}
-          placeholder="Select Your Country"
-          style={{ width: 500, height: 500 }}
-          onValueChange={(val) => setCountry(val)}
-        >
-          {/* {countries.map((c) => {
-            return <Picker.Item key={c.code} label={c.name} value={c.name} />;
-          })} */}
-        {/* </Picker> */}
         <View style={{ marginTop: 20 }}>
           <Text style={{ fontSize: 20, fontWeight: "bold" }}> Select Pays</Text>
         </View>
