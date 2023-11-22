@@ -46,7 +46,7 @@ const ProductCard = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addItemToCart: (product) =>
-      dispatch(actions.addToCard({ quantity: 1, product })),
+      dispatch(actions.addToCart({ quantity: 1, product })),
   };
 };
 
