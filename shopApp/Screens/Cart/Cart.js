@@ -44,7 +44,7 @@ const Cart = (props) => {
           <View style={styles.bottomContainer}>
             <View>
               <Text style={{ fontSize: 20, color: "blue" }}>
-                $ {toTalPrice}
+                $ {Math.round(toTalPrice)}
               </Text>
             </View>
             <View style={{ flexDirection: "row" }}>
