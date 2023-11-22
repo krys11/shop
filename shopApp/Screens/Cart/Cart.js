@@ -2,12 +2,11 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
   Dimensions,
 } from "react-native";
 import React from "react";
-import { List, Avatar, Button } from "react-native-paper";
+import { Button } from "react-native-paper";
 
 import { connect } from "react-redux";
 import CartItem from "./CartItem";
@@ -66,7 +65,7 @@ const Cart = (props) => {
               <View>
                 <Button
                   mode="outlined"
-                  onPress={() => navigation.navigate("Checkout")}
+                  onPress={() => navigation.navigate("checkout")}
                 >
                   CheckOut
                 </Button>

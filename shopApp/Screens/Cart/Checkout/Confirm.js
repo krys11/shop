@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Checkout = () => {
+const Confirm = () => {
   return (
     <View>
-      <Text>Checkout</Text>
+      <Text>Confirm</Text>
     </View>
   );
 };
 
-export default Checkout;
+export default Confirm;
