@@ -1,15 +1,18 @@
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 import React from "react";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Payment = () => {
   const { params } = useRoute();
-
-  console.log(params);
+  const navigation = useNavigation();
 
   return (
     <View>
       <Text>Payment</Text>
+      <Button
+        title="Confirm"
+        onPress={() => navigation.navigate("Confirm", { order: params.data })}
+      />
     </View>
   );
 };

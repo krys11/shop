@@ -16,7 +16,6 @@ const { width } = Dimensions.get("window");
 const Checkout = (props) => {
   const navigation = useNavigation();
 
-  const [orderItems, setOrderItems] = useState();
   const [address, setAddress] = useState();
   const [address2, setAddress2] = useState("");
   const [city, setCity] = useState();
@@ -25,16 +24,7 @@ const Checkout = (props) => {
   const [phone, setPhone] = useState();
   const [user, setUser] = useState();
 
-  useEffect(() => {
-    setOrderItems(props.cartItems);
-
-    return () => {
-      setOrderItems();
-    };
-  }, []);
-
   const checkOut = () => {
-    console.log("orders", orderItems);
     const data = {
       city,
       country,
