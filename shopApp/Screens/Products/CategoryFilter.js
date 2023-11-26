@@ -33,9 +33,9 @@ const CategoryFilter = ({ categoryFilter, active, setActive, categories }) => {
       </TouchableOpacity>
       {categories.map((item) => (
         <TouchableOpacity
-          key={item._id.$oid}
+          key={item._id}
           onPress={() => {
-            categoryFilter(item._id.$oid), setActive(categories.indexOf(item));
+            categoryFilter(item._id), setActive(categories.indexOf(item));
           }}
         >
           <Badge
