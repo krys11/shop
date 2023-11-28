@@ -2,8 +2,12 @@ import { View, ScrollView, StyleSheet, Image, Button } from "react-native";
 import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Text, List } from "react-native-paper";
+import Toast from "react-native-toast-message";
+import * as actions from "../../Redux/Actions/cartActions";
 
-const SingleProduct = () => {
+import { connect } from "react-redux";
+
+const SingleProduct = (props) => {
   const { params } = useRoute();
   const [item, setItem] = useState(params.item);
   const [availab, setAvailab] = useState("");
@@ -38,11 +42,29 @@ const SingleProduct = () => {
           <Text style={styles.price}>$ {item.price}</Text>
         </View>
         <View style={styles.btnAdd}>
-          <Button title="ADD" />
+          <Button
+            title="ADD"
+            onPress={() => {
+              props.addItemToCart(item),
+                Toast.show({
+                  topOffset: 60,
+                  type: "success",
+                  text1: `${item.name} added to Cart`,
+                  text2: "Go to your cart to complete order",
+                });
+            }}
+          />
         </View>
       </View>
     </>
   );
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product) =>
+      dispatch(actions.addToCart({ quantity: 1, product })),
+  };
 };
 
 const styles = StyleSheet.create({
@@ -91,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SingleProduct;
+export default connect(null, mapDispatchToProps)(SingleProduct);

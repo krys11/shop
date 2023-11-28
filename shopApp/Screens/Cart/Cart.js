@@ -22,7 +22,7 @@ const Cart = (props) => {
   const navigation = useNavigation();
   let toTalPrice = 0;
   props.cartItems.forEach((item) => {
-    return (toTalPrice += item.product.item.price);
+    return (toTalPrice += item.product.price);
   });
 
   return (

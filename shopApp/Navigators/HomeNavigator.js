@@ -17,9 +17,9 @@ const MyStack = () => {
       />
 
       <Stack.Screen
-        name="Product Detail"
+        name="Product Details"
         component={SingleProduct}
-        options={{ headerShown: false }}
+        options={{ headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   );

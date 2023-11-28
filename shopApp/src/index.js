@@ -1,9 +1,13 @@
 import "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 
 import { SafeAreaView, StyleSheet } from "react-native";
 import ProductContainer from "../Screens/Products/ProductContainer";
 import Header from "../Shared/Header";
 import { NavigationContainer } from "@react-navigation/native";
+
+//Context Api
+import Auth from "../Context/store/Auth";
 
 //Navigation
 import Main from "../Navigators/Main";
@@ -14,14 +18,17 @@ import { store } from "../Redux/store";
 
 export default function Start() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <SafeAreaView style={styles.container}>
-          <Header />
-          <Main />
-        </SafeAreaView>
-      </NavigationContainer>
-    </Provider>
+    <Auth>
+      <Provider store={store}>
+        <NavigationContainer>
+          <SafeAreaView style={styles.container}>
+            <Header />
+            <Main />
+          </SafeAreaView>
+          <Toast />
+        </NavigationContainer>
+      </Provider>
+    </Auth>
   );
 }
 

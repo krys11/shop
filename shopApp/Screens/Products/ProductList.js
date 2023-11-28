@@ -1,16 +1,19 @@
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
+import { View, TouchableOpacity, Dimensions } from "react-native";
 import React from "react";
 import ProductCard from "./ProductCard";
 import { useNavigation } from "@react-navigation/native";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
-const ProductList = ({ item }) => {
+const ProductList = (props) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={{ width: "50%" }}
-      onPress={() => navigation.navigate("Product Detail", { item: item })}
+      onPress={() =>
+        navigation.navigate("Product Details", { item: props.item })
+      }
     >
       <View
         style={{
@@ -18,7 +21,7 @@ const ProductList = ({ item }) => {
           backgroundColor: "gainsboro",
         }}
       >
-        <ProductCard item={item} />
+        <ProductCard item={props.item} />
       </View>
     </TouchableOpacity>
   );

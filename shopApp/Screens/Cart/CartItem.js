@@ -1,12 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { Text, StyleSheet } from "react-native";
+import React from "react";
 import { List, Avatar } from "react-native-paper";
 
 const CartItem = (props) => {
-  const data = props.item.item.product.item;
-  const [quantity, setQuantity] = useState(
-    props.item.item.product.item.quantity
-  );
+  const data = props.item.item.product;
 
   return (
     <List.Item

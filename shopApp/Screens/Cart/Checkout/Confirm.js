@@ -45,23 +45,21 @@ const Confirm = (props) => {
                   style={{ paddingHorizontal: 20 }}
                   title={
                     <Text style={{ fontWeight: "bold" }}>
-                      {data.product.item.name}
+                      {data.product.name}
                     </Text>
                   }
                   left={() => (
                     <Avatar.Image
                       size={30}
                       source={{
-                        uri: data.product.item.image
-                          ? data.product.item.image
+                        uri: data.product.image
+                          ? data.product.image
                           : "https://www.freepngimg.com/thumb/fifa/11-2-fifa-png-images.png",
                       }}
                     />
                   )}
                   right={() => (
-                    <Text style={styles.price}>
-                      $ {data.product.item.price}
-                    </Text>
+                    <Text style={styles.price}>$ {data.product.price}</Text>
                   )}
                 />
               ))}
