@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import FormContainer from "../../Shared/FormContainer";
 import Input from "../../Shared/Input";
-import { HelperText } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import Error from "../../Shared/Error";
 

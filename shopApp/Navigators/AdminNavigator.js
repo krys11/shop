@@ -7,14 +7,27 @@ import ProductForm from "../Screens/Admin/ProductForm";
 import Products from "../Screens/Admin/Products";
 import Categories from "../Screens/Admin/Categories";
 
-const stack = createStackNavigator();
+const Stack = createStackNavigator();
 
-const AdminNavigator = () => {
+function MyStack() {
   return (
-    <View>
-      <Text>AdminNavigator</Text>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Products"
+        component={Products}
+        options={{
+          title: "Products",
+          headerTitleAlign: "center",
+        }}
+      />
+      <Stack.Screen name="Categories" component={Categories} />
+      <Stack.Screen name="Orders" component={Order} />
+      <Stack.Screen name="ProductForm" component={ProductForm} />
+    </Stack.Navigator>
   );
+}
+const AdminNavigator = () => {
+  return <MyStack />;
 };
 
-export default AdminNavigator;
+export { AdminNavigator };
