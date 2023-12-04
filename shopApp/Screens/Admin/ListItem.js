@@ -12,10 +12,12 @@ import {
 } from "react-native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
+import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 
 const ListItem = (props) => {
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -42,13 +44,13 @@ const ListItem = (props) => {
                 right: 10,
               }}
             >
-              <FontAwesome5Icon name="close" color={"red"} size={20} />
+              <FontAwesome5Icon name="window-close" color={"red"} size={30} />
             </TouchableOpacity>
             <EasyButton
               medium
               secondary
               onPress={() => [
-                props.navigation.navigate("ProductForm", { item: props }),
+                navigation.navigate("ProductForm", { item: props }),
                 setModalVisible(false),
               ]}
             >
@@ -66,7 +68,7 @@ const ListItem = (props) => {
       </Modal>
       <TouchableOpacity
         onPress={() => {
-          props.navigation.navigate("Product Detail", { item: props });
+          navigation.navigate("Product Details Admin", { item: props });
         }}
         onLongPress={() => setModalVisible(true)}
         style={[

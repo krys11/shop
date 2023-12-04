@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Dimensions, FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { Searchbar, ActivityIndicator } from "react-native-paper";
 import ListItem from "./ListItem";
+import EasyButton from "../../Shared/StyledComponents/EasyButton";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 import axios from "axios";
 import baseURL from "../../assets/common/baseUrl";
@@ -84,12 +86,40 @@ const Products = (props) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <EasyButton
+          secondary
+          medium
+          onPress={() => props.navigation.navigate("Orders")}
+          style={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <FontAwesome5Icon name="shopping-bag" color={"white"} size={18} />
+          <Text style={styles.buttonText}>Orders</Text>
+        </EasyButton>
+        <EasyButton
+          secondary
+          medium
+          onPress={() => props.navigation.navigate("ProductForm")}
+          style={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <FontAwesome5Icon name="plus" color={"white"} size={18} />
+          <Text style={styles.buttonText}>Products</Text>
+        </EasyButton>
+        <EasyButton
+          secondary
+          medium
+          onPress={() => props.navigation.navigate("Categories")}
+          style={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <FontAwesome5Icon name="plus" color={"white"} size={18} />
+          <Text style={styles.buttonText}>Categories</Text>
+        </EasyButton>
+      </View>
       <View style={{ alignSelf: "center", marginBottom: 10 }}>
         <Searchbar
           style={{ width: "85%", backgroundColor: "gainsboro" }}
-          onFocus={""}
           onChangeText={(text) => searchProduct(text)}
-          value={searchValue}
+          value=""
         />
       </View>
 

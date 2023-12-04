@@ -1,14 +1,21 @@
-import { View, ScrollView, StyleSheet, Image, Button } from "react-native";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Button,
+  LogBox,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Text, List } from "react-native-paper";
-import Toast from "react-native-toast-message";
-import * as actions from "../../Redux/Actions/cartActions";
 import TrafficLight from "../../Shared/StyledComponents/TrafficLight";
 
-import { connect } from "react-redux";
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
 
-const SingleProduct = (props) => {
+const SingleProductAdmin = () => {
   const { params } = useRoute();
   const [availability, setAvailability] = useState(null);
   const [availabilityText, setAvailabilityText] = useState("");
@@ -53,7 +60,7 @@ const SingleProduct = (props) => {
             <Text variant="headlineMedium" style={styles.contentText}>
               {params.item.brand}
             </Text>
-            <View style={{ flex: 1, marginHorizontal: 15 }}>
+            <View style={{ marginHorizontal: 15 }}>
               <View style={styles.available}>
                 <Text>
                   Availability: {availabilityText} {availability}
@@ -71,29 +78,11 @@ const SingleProduct = (props) => {
           <Text style={styles.price}>$ {params.item.price}</Text>
         </View>
         <View style={styles.btnAdd}>
-          <Button
-            title="ADD"
-            onPress={() => {
-              props.addItemToCart(params.item),
-                Toast.show({
-                  topOffset: 60,
-                  type: "success",
-                  text1: `${params.item.name} added to Cart`,
-                  text2: "Go to your cart to complete order",
-                });
-            }}
-          />
+          <Button title="ADD" />
         </View>
       </View>
     </>
   );
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addItemToCart: (product) =>
-      dispatch(actions.addToCart({ quantity: 1, product })),
-  };
 };
 
 const styles = StyleSheet.create({
@@ -147,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, mapDispatchToProps)(SingleProduct);
+export default SingleProductAdmin;

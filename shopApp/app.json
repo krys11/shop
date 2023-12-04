@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -32,6 +30,7 @@
         "projectId": "4122bc4f-f9ca-43a4-93e7-a9568fc66d74"
       }
     },
-    "owner": "krysdario1996"
+    "owner": "krysdario1996",
+    "plugins": ["expo-image-picker"]
   }
 }
