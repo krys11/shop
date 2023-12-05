@@ -129,6 +129,10 @@ router.post("/", uploadOptions.single("image"), async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  console.log(req.body);
+
+  const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
+
   if (!mongoose.isValidObjectId(req.params.id)) {
     res.status(400).send("id invalid");
   }
@@ -147,7 +151,7 @@ router.put("/:id", async (req, res) => {
         name: req.body.name,
         description: req.body.description,
         richDescription: req.body.richDescription,
-        image: req.body.image,
+        image: req.body.image.name,
         brand: req.body.brand,
         price: req.body.price,
         category: req.body.category,

@@ -50,7 +50,7 @@ const Main = () => {
         }}
       />
 
-      {/* {context.stateUser.user.isAdmin == true ? (
+      {context.stateUser.user.isAdmin == true ? (
         <Tab.Screen
           name="Admin"
           component={AdminNavigator}
@@ -60,9 +60,9 @@ const Main = () => {
             ),
           }}
         />
-      ) : null} */}
+      ) : null}
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Admin"
         component={AdminNavigator}
         options={{
@@ -70,7 +70,7 @@ const Main = () => {
             <FontAwesome5Icon name="cog" color={color} size={30} />
           ),
         }}
-      />
+      /> */}
 
       <Tab.Screen
         name="User"
