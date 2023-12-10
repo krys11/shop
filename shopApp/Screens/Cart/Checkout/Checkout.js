@@ -1,13 +1,14 @@
 import { View, Text, Button, Dimensions } from "react-native";
-import React, { useEffect, useState } from "react";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import React, { useContext, useEffect, useState } from "react";
 import Input from "../../../Shared/Input";
 import FormContainer from "../../../Shared/FormContainer";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Picker } from "@react-native-picker/picker";
+import Toast from "react-native-toast-message";
 
 import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import AuthGlobal from "../../../Context/store/AuthGlobal";
 
 const countries = require("../../../assets/countries.json");
 
@@ -15,7 +16,9 @@ const { width } = Dimensions.get("window");
 
 const Checkout = (props) => {
   const navigation = useNavigation();
+  const context = useContext(AuthGlobal);
 
+  const [orderItems, setOrderItems] = useState();
   const [address, setAddress] = useState();
   const [address2, setAddress2] = useState("");
   const [city, setCity] = useState();
@@ -24,11 +27,32 @@ const Checkout = (props) => {
   const [phone, setPhone] = useState();
   const [user, setUser] = useState();
 
+  useEffect(() => {
+    setOrderItems(props.cartItems);
+
+    if (context.stateUser.isAuthenticated) {
+      setUser(context.stateUser.user.sub);
+    } else {
+      props.navigation.navigate("User");
+      Toast.show({
+        topOffset: 60,
+        type: "error",
+        text1: "Please Login to Checkout",
+        text2: "",
+      });
+    }
+
+    return () => {
+      setOrderItems();
+    };
+  }, []);
+
   const checkOut = () => {
     const data = {
       city,
       country,
       dateOrdered: Date.now(),
+      orderItems,
       phone,
       shippingAddress1: address,
       shippingAddress2: address2,

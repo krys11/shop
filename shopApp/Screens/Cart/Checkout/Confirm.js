@@ -7,15 +7,40 @@ import { List, Avatar } from "react-native-paper";
 import { connect } from "react-redux";
 import * as actions from "../../../Redux/Actions/cartActions";
 
+import axios from "axios";
+import baseURL from "../../../assets/common/baseUrl";
+import Toast from "react-native-toast-message";
+
 const Confirm = (props) => {
   const { params } = useRoute();
   const navigation = useNavigation();
 
   const confirm = () => {
-    setTimeout(() => {
-      props.clearCart();
-      navigation.navigate("cart");
-    }, 500);
+    order = params.order;
+    axios
+      .post(`${baseURL}orders`, order)
+      .then((res) => {
+        if (res.status == 200 || res.status == 201) {
+          Toast.show({
+            topOffset: 60,
+            type: "success",
+            text1: "Order Completed",
+            text2: "",
+          });
+          setTimeout(() => {
+            props.clearCart();
+            navigation.navigate("cart");
+          }, 500);
+        }
+      })
+      .catch((error) => {
+        Toast.show({
+          topOffset: 60,
+          type: "error",
+          text1: "Something went wrong",
+          text2: "Please try again",
+        });
+      });
   };
 
   return (
