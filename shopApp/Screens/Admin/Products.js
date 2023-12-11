@@ -132,73 +132,11 @@ const Products = (props) => {
           data={productFilter}
           ListHeaderComponent={ListHeader}
           renderItem={({ item, index }) => (
-            <ListItem
-              {...item}
-              navigation={props.navigation}
-              index={index}
-              delete={deleteProduct}
-            />
+            <ListItem {...item} index={index} delete={deleteProduct} />
           )}
           keyExtractor={(item) => item.id}
         />
       )}
-      {/* <View style={styles.buttonContainer}>
-            <EasyButton
-                secondary
-                medium
-                onPress={() => props.navigation.navigate("Orders")}
-            >
-                <Icon name="shopping-bag" size={18} color="white" />
-                <Text style={styles.buttonText}>Orders</Text>
-            </EasyButton>
-            <EasyButton
-                secondary
-                medium
-                onPress={() => props.navigation.navigate("ProductForm")}
-            >
-                <Icon name="plus" size={18} color="white" />
-                <Text style={styles.buttonText}>Products</Text>
-            </EasyButton>
-            <EasyButton
-                secondary
-                medium
-                onPress={() => props.navigation.navigate("Categories")}
-            >
-                <Icon name="plus" size={18} color="white" />
-                <Text style={styles.buttonText}>Categories</Text>
-            </EasyButton>
-        </View>
-      <View>
-          <Header searchBar rounded>
-              <Item style={{ padding: 5 }}>
-                  <Icon name="search" />
-                  <Input 
-                    placeholder="Search"
-                    onChangeText={(text) => searchProduct(text)}
-                  />
-              </Item>
-          </Header>
-      </View>
-
-      {loading ? (
-          <View style={styles.spinner}> 
-              <ActivityIndicator size="large" color="red" />
-          </View>
-      ) : (
-          <FlatList 
-            data={productFilter}
-            ListHeaderComponent={ListHeader}
-            renderItem={({ item, index }) => (
-                <ListItem 
-                    {...item}
-                    navigation={props.navigation}
-                    index={index}
-                    delete={deleteProduct}
-                />
-            )}
-            keyExtractor={(item) => item.id}
-          />
-      )} */}
     </View>
   );
 };

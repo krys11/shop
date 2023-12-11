@@ -129,6 +129,7 @@ router.post("/", uploadOptions.single("image"), async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  console.log(req.params.id);
   console.log(req.body);
 
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
@@ -151,7 +152,7 @@ router.put("/:id", async (req, res) => {
         name: req.body.name,
         description: req.body.description,
         richDescription: req.body.richDescription,
-        image: req.body.image.name,
+        image: `${basePath}${req.body.image.name}`,
         brand: req.body.brand,
         price: req.body.price,
         category: req.body.category,

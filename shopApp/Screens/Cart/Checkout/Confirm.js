@@ -56,6 +56,7 @@ const Confirm = (props) => {
                 Shipping To:
               </Text>
               <View style={{ padding: 10 }}>
+                <Text>Adress: {params.order.userName}</Text>
                 <Text>Adress: {params.order.shippingAddress1}</Text>
                 <Text>Adress2: {params.order.shippingAddress1}</Text>
                 <Text>Phone: {params.order.phone}</Text>

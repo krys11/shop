@@ -63,6 +63,7 @@ router.post("/", async (req, res) => {
 
   let order = new Order({
     orderItems: orderItemsIdsResolved,
+    userName: req.body.userName,
     shippingAddress1: req.body.shippingAddress1,
     shippingAddress2: req.body.shippingAddress2,
     city: req.body.city,

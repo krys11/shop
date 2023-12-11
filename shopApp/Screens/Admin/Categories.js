@@ -5,6 +5,7 @@ import {
   FlatList,
   StyleSheet,
   TextInput,
+  Alert,
 } from "react-native";
 import React, { useState, useEffect, Fragment } from "react";
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
@@ -89,6 +90,16 @@ const Categories = () => {
       .catch((error) => alert("Error to load categories"));
   };
 
+  const showAlert = (id) => {
+    Alert.alert("Alert Delete", "You delete Category ?", [
+      {
+        text: "No",
+        style: "cancel",
+      },
+      { text: "Yes", onPress: () => deleteCategory(id) },
+    ]);
+  };
+
   return (
     <View style={{ position: "relative", height: "100%" }}>
       <View style={{ marginBottom: 60 }}>
@@ -96,7 +107,7 @@ const Categories = () => {
           data={categories}
           renderItem={({ item, index }) => (
             <Fragment key={Math.random()}>
-              <Item item={item} index={index} delete={deleteCategory} />
+              <Item item={item} index={index} delete={showAlert} />
             </Fragment>
           )}
           keyExtractor={() => Math.random()}
@@ -104,7 +115,7 @@ const Categories = () => {
       </View>
       <View style={styles.bottomBar}>
         <View>
-          <Text>Add Category</Text>
+          <Text style={{ fontWeight: "bold" }}>Add Category</Text>
         </View>
         <View style={{ width: width / 2.5 }}>
           <TextInput
@@ -129,6 +140,7 @@ const styles = StyleSheet.create({
     width: width,
     height: 60,
     padding: 2,
+    paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -137,9 +149,11 @@ const styles = StyleSheet.create({
     left: 0,
   },
   input: {
-    height: 40,
+    height: 35,
     borderColor: "gray",
     borderWidth: 1,
+    paddingHorizontal: 10,
+    borderRadius: 10,
   },
   item: {
     shadowColor: "#000",

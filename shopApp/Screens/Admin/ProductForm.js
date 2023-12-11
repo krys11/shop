@@ -42,6 +42,8 @@ const ProductForm = (props) => {
   const [numReviews, setNumReviews] = useState(0);
   const [item, setItem] = useState(null);
 
+  console.log("mainImage: ", mainImage);
+
   useEffect(() => {
     if (!props.route.params) {
       setItem(null);
@@ -151,8 +153,6 @@ const ProductForm = (props) => {
       },
     };
 
-    console.log(data);
-
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -179,43 +179,53 @@ const ProductForm = (props) => {
     };
 
     if (item !== null) {
-      // axios
-      //   .put(`${baseURL}products/${item.id}`, formData, config)
-      //   .then((res) => {
-      //     if (res.status == 200 || res.status == 201) {
-      //       Toast.show({
-      //         topOffset: 60,
-      //         type: "success",
-      //         text1: "Product successfuly updated",
-      //         text2: "",
-      //       });
-      //       setTimeout(() => {
-      //         props.navigation.navigate("Products");
-      //       }, 500);
-      //     }
-      //   })
-      //   .catch((error) => {
+      axios
+        .put(`${baseURL}products/${item.id}`, { name: "dario" }, config)
+        .then((res) => {
+          if (res.status == 200 || res.status == 201) {
+            Toast.show({
+              topOffset: 60,
+              type: "success",
+              text1: "Product successfuly updated",
+              text2: "",
+            });
+            setTimeout(() => {
+              props.navigation.navigate("Products");
+            }, 500);
+          }
+        })
+        .catch((error) => {
+          Toast.show({
+            topOffset: 60,
+            type: "error",
+            text1: "Something went wrong",
+            text2: "Please try again",
+          });
+        });
+
+      // try {
+      //   const f = await fetch(`${baseURL}products/${item.id}`, requestOptions);
+      //   if (f.ok) {
+      //     const data = await f.json();
       //     Toast.show({
       //       topOffset: 60,
-      //       type: "error",
-      //       text1: "Something went wrong",
-      //       text2: "Please try againn",
+      //       type: "success",
+      //       text1: "Product successfuly updated",
+      //       text2: "",
       //     });
+      //     setTimeout(() => {
+      //       props.navigation.navigate("Products");
+      //     }, 500);
+      //   }
+      // } catch (error) {
+      //   console.log("ProductForm: ", error);
+      //   Toast.show({
+      //     topOffset: 60,
+      //     type: "error",
+      //     text1: "Something went wrong",
+      //     text2: "Please try againn",
       //   });
-      try {
-        const f = await fetch(`${baseURL}products/${item.id}`, requestOptions);
-        if (f.ok) {
-          const data = await f.json();
-        }
-      } catch (error) {
-        console.log("ProductForm: ", error);
-        Toast.show({
-          topOffset: 60,
-          type: "error",
-          text1: "Something went wrong",
-          text2: "Please try againn",
-        });
-      }
+      // }
     } else {
       axios
         .post(`${baseURL}products`, formData, config)

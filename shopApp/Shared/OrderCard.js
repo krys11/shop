@@ -109,6 +109,9 @@ const OrderCard = (props) => {
         <Text>
           Status: {statusText} {orderStatus}
         </Text>
+        <Text>User Name: {props.userName}</Text>
+        <Text>UserID: {props.user}</Text>
+        <Text>Phone: {props.phone}</Text>
         <Text>
           Address: {props.shippingAddress1} {props.shippingAddress2}
         </Text>

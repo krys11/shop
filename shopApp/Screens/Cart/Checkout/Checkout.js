@@ -6,6 +6,10 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Picker } from "@react-native-picker/picker";
 import Toast from "react-native-toast-message";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import baseURL from "../../../assets/common/baseUrl";
+
 import { connect } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AuthGlobal from "../../../Context/store/AuthGlobal";
@@ -23,15 +27,32 @@ const Checkout = (props) => {
   const [address2, setAddress2] = useState("");
   const [city, setCity] = useState();
   const [zip, setZip] = useState();
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState("Afghanistan");
   const [phone, setPhone] = useState();
   const [user, setUser] = useState();
+  const [userName, setUserName] = useState();
 
   useEffect(() => {
     setOrderItems(props.cartItems);
 
     if (context.stateUser.isAuthenticated) {
-      setUser(context.stateUser.user.sub);
+      AsyncStorage.getItem("jwt")
+        .then((res) => {
+          if (res) {
+            axios
+              .get(`${baseURL}users/${context.stateUser.user.userId}`, {
+                headers: { Authorization: `Bearer ${res}` },
+              })
+              .then((user) => {
+                setUser(context.stateUser.user.userId);
+                console.log(user.data);
+                setUserName(user.data.name);
+              });
+          } else {
+            return;
+          }
+        })
+        .catch((error) => console.log(error));
     } else {
       props.navigation.navigate("User");
       Toast.show({
@@ -49,6 +70,7 @@ const Checkout = (props) => {
 
   const checkOut = () => {
     const data = {
+      userName,
       city,
       country,
       dateOrdered: Date.now(),

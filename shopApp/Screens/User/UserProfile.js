@@ -15,8 +15,6 @@ const UserProfile = (props) => {
   const [userProfile, setUserProfile] = useState();
   const [orders, setOrders] = useState();
 
-  console.log(context.dispatch);
-
   useFocusEffect(
     useCallback(() => {
       if (
