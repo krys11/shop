@@ -153,34 +153,35 @@ const ProductForm = (props) => {
       },
     };
 
-    const requestOptions = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        image: {
-          uri: newImageUri,
-          type: mime.getType(newImageUri),
-          name: newImageUri.split("/").pop(),
-        },
-        name: name,
-        brand: brand,
-        price: price,
-        description: description,
-        category: category,
-        countInStock: countInStock,
-        richDescription: richDescription,
-        rating: rating,
-        numReviews: numReviews,
-        isFeatured: isFeatured,
-      }),
-    };
+    // const requestOptions = {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    //   body: JSON.stringify({
+    //     image: {
+    //       uri: newImageUri,
+    //       type: mime.getType(newImageUri),
+    //       name: newImageUri.split("/").pop(),
+    //     },
+    //     name: name,
+    //     brand: brand,
+    //     price: price,
+    //     description: description,
+    //     category: category,
+    //     countInStock: countInStock,
+    //     richDescription: richDescription,
+    //     rating: rating,
+    //     numReviews: numReviews,
+    //     isFeatured: isFeatured,
+    //   }),
+    // };
 
     if (item !== null) {
+      console.log(`${baseURL}products/${item.id}`);
       axios
-        .put(`${baseURL}products/${item.id}`, { name: "dario" }, config)
+        .put(`${baseURL}products/${item.id}`, formData, config)
         .then((res) => {
           if (res.status == 200 || res.status == 201) {
             Toast.show({
@@ -195,6 +196,7 @@ const ProductForm = (props) => {
           }
         })
         .catch((error) => {
+          console.log(error.message, error);
           Toast.show({
             topOffset: 60,
             type: "error",

@@ -128,7 +128,7 @@ router.post("/", uploadOptions.single("image"), async (req, res) => {
   res.send(product);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", uploadOptions.single("image"), async (req, res) => {
   console.log(req.params.id);
   console.log(req.body);
 
@@ -144,6 +144,8 @@ router.put("/:id", async (req, res) => {
     return res.status(400).send("Category invalid");
   }
 
+  console.log(`${basePath}${req.file.filename}`);
+
   let product;
   try {
     product = await Product.findByIdAndUpdate(
@@ -152,7 +154,7 @@ router.put("/:id", async (req, res) => {
         name: req.body.name,
         description: req.body.description,
         richDescription: req.body.richDescription,
-        image: `${basePath}${req.body.image.name}`,
+        image: `${basePath}${req.file.filename}`,
         brand: req.body.brand,
         price: req.body.price,
         category: req.body.category,
