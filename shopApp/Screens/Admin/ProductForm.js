@@ -42,8 +42,6 @@ const ProductForm = (props) => {
   const [numReviews, setNumReviews] = useState(0);
   const [item, setItem] = useState(null);
 
-  console.log("mainImage: ", mainImage);
-
   useEffect(() => {
     if (!props.route.params) {
       setItem(null);
